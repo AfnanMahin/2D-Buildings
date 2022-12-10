@@ -14,13 +14,13 @@ public class PlayerController : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
-    private Animator anim;
+    //private Animator anim;
 
     public ParticleSystem Dust;
 
     void Start() 
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,8 +28,9 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
-        if (moveInput == 0)
+ 
+       /*
+       if (moveInput == 0)
         {
             anim.SetBool("isWalking", false);
         }
@@ -37,8 +38,9 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("isWalking", true);
         }
+        */
     }
-
+    
     void Update() 
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
@@ -54,13 +56,14 @@ public class PlayerController : MonoBehaviour
     
         if(isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {          
-            anim.SetTrigger("takeOff");
+            //anim.SetTrigger("takeOff");
 
             rb.velocity = Vector2.up * jumpForce;
 
             CreateDust();
         }
 
+        /*
         if(isGrounded == true)
         {
             anim.SetBool("isJumping", false);
@@ -69,6 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("isJumping", true);
         }
+        */
     }
 
     void CreateDust()
